@@ -1,0 +1,62 @@
+# Domain Docs
+
+How the engineering skills should consume this repo's domain documentation when exploring the codebase.
+
+## Before exploring, read these
+
+Read in this order:
+
+1. **`CONTEXT.md`** at the repo root. Canonical domain language and invariants.
+2. **`GLOSSARY.md`** at the repo root, or **`GLOSSARY-MAP.md`** if it exists. `GLOSSARY-MAP.md` points at one `GLOSSARY.md` per context; read each glossary relevant to the topic. `GLOSSARY.md` is a concise terminology lookup. Do not restate definitions that already live in `CONTEXT.md`.
+3. **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+
+If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
+
+## Distinct jobs
+
+`CONTEXT.md` and `GLOSSARY.md` must not carry the same definition twice.
+
+- **`CONTEXT.md`**: canonical domain language and invariants.
+- **`GLOSSARY.md`**: concise terminology lookup. When a term is already defined in `CONTEXT.md`, point at that definition instead of copying it.
+
+## File structure
+
+Single-context repo (most repos):
+
+```
+/
+├── CONTEXT.md                         ← canonical domain and invariants
+├── GLOSSARY.md                        ← concise terminology lookup
+├── docs/adr/
+│   ├── 0001-event-sourced-orders.md
+│   └── 0002-postgres-for-write-model.md
+└── src/
+```
+
+Multi-context repo (presence of `GLOSSARY-MAP.md` at the root):
+
+```
+/
+├── CONTEXT.md                         ← canonical domain and invariants
+├── GLOSSARY-MAP.md
+├── docs/adr/                          ← system-wide decisions
+└── src/
+    ├── ordering/
+    │   ├── GLOSSARY.md
+    │   └── docs/adr/                  ← context-specific decisions
+    └── billing/
+        ├── GLOSSARY.md
+        └── docs/adr/
+```
+
+## Use the domain vocabulary
+
+When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in `CONTEXT.md`, then the concise entry in `GLOSSARY.md`. Don't drift to synonyms those files explicitly avoid, and don't copy a `CONTEXT.md` definition into `GLOSSARY.md`.
+
+If the concept you need isn't in either file yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `/domain-modeling`).
+
+## Flag ADR conflicts
+
+If your output contradicts an existing ADR, surface it explicitly rather than silently overriding:
+
+> _Contradicts ADR-0007 (event-sourced orders), but worth reopening because…_
