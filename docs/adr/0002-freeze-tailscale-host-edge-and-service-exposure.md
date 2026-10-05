@@ -13,11 +13,14 @@ Canonical service ports are:
 | Surface | Canonical port | Exposure |
 | --- | ---: | --- |
 | OpenClaw gateway | 18789/tcp | Tailnet HTTPS via Tailscale Serve when deployed |
+| OpenClaw sandbox/bridge | 18790/tcp | Loopback/private support surface; tailnet exposure only if a deployed OpenClaw feature explicitly requires it |
 | OmniRoute | 20128/tcp | Tailnet HTTPS via Tailscale Serve when deployed |
 | OmniConductor hub | 7910/tcp | Private service-to-service; tailnet only when a remote peer requires it |
+| Faro spokesperson | 7920/tcp | Private service-to-service; dashboard reaches it through OmniRoute's server-side proxy, not directly from browsers |
 | YantrikDB wire protocol | 7437/tcp | Private raw TCP; tailnet only for explicitly authorized remote clients/peers |
 | YantrikDB HTTP gateway | 7438/tcp | Private HTTP/HTTPS; tailnet only for explicitly authorized remote clients/peers |
 | YantrikDB cluster transport | 7440/tcp | Cluster-internal; never general user ingress |
+| YantrikDB MCP network transport | 8420/tcp | Optional authenticated MCP HTTP/SSE surface; no exposure unless network MCP transport is explicitly deployed |
 | n8n local instance | 5678/tcp | Reserved only if n8n is deployed locally; no local exposure is implied while n8n is hosted elsewhere |
 | Tandem Browser | none frozen | No inbound tailnet port until a deployed requirement proves one is necessary |
 | Midscene | none frozen | No inbound tailnet port until a deployed requirement proves one is necessary |
