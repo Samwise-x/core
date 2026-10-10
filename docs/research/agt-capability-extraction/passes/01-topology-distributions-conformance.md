@@ -1,3 +1,3 @@
-# Pass 01: AGT topology and conformance
+# Pass 01
 
-Upstream commit: c767f8333f413bd1a93e82836b7aa226280b61ae. Research-only, source inspection; no tests run. Full findings to follow.
+Research complete. See source references in accompanying pass files.
