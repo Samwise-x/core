@@ -18,7 +18,7 @@ At every hourly wake: read this ledger AND existing `passes/` files from this br
 
 ### Assigned passes
 - [ ] 01: Upstream topology, package distributions, manifests, versions, licenses, specs, conformance suite.
-- [ ] 02: Agent Control Specification deterministic policy engine, host-enforced fail-closed verdicts, intervention points.
+- [x] 02: Agent Control Specification deterministic policy engine, host-enforced fail-closed verdicts, intervention points. Source-traced; tests not executed.
 - [ ] 03: Identity, signed assertions, SPIFFE/DID, delegation narrowing and revocation.
 - [ ] 04: Audit chains, Merkle/integrity proofs, immutable receipts, evidence formats and provenance.
 - [ ] 05: Runtime execution controls, privilege rings, sandbox/containment, kill switches.
@@ -31,7 +31,8 @@ At every hourly wake: read this ledger AND existing `passes/` files from this br
 - [ ] 12: Synthesis: deduplicated component extraction matrix, minimum complete AGT-derived subset, dependency graph, evidence coverage, unsolved gaps, sequenced research-to-build handoff.
 
 ## Pass files
-None yet. Completion entries must link to committed pass files.
+- 01: Existing placeholder at passes/01-topology-distributions-conformance.md is NOT a completed report; leave unchecked until repaired.
+- [02: Pre-tool enforcement and approval binding](passes/02-pre-tool-enforcement-approval-binding.md), source-traced at pinned SHAs; tests not executed. Verified committed report at a99b469a928b90798390457fc0871929cdcaf302.
 
 ## Non-negotiable
 Do not recommend Temporal or another workflow engine. Avoid parallel authoritative stores and extractors. AGT middleware does not by itself create OS-enforced privilege separation. The two-gate workflow and separate verifier authority are already decided; the *enforceable implementation* remains unproven.
