@@ -21,7 +21,7 @@ At every hourly wake: read this ledger AND existing `passes/` files from this br
 - [x] 02: Agent Control Specification deterministic policy engine, host-enforced fail-closed verdicts, intervention points. Source-traced; tests not executed.
 - [x] 03: Identity, signed assertions, SPIFFE/DID, delegation narrowing and revocation. Source-traced; tests not executed.
 - [x] 04: Audit chains, Merkle/integrity proofs, immutable receipts, evidence formats and provenance. Source-traced; tests not executed.
-- [ ] 05: Runtime execution controls, privilege rings, sandbox/containment, kill switches.
+- [x] 05: Runtime execution controls, privilege rings, sandbox/containment, kill switches. Source-traced scoped stop gate and termination callback semantics; tests not executed.
 - [ ] 06: Intent authorization declare/approve/execute/verify, drift checking and replay.
 - [ ] 07: Verification/compliance modules and actual adversarial/conformance tests.
 - [ ] 08: MCP/A2A trust gateways and interception, mappings to OmniRoute and Hooks.
@@ -35,6 +35,7 @@ At every hourly wake: read this ledger AND existing `passes/` files from this br
 - [02: Pre-tool enforcement and approval binding](passes/02-pre-tool-enforcement-approval-binding.md), source-traced at pinned SHAs; tests not executed. Verified committed report at a99b469a928b90798390457fc0871929cdcaf302.
 - [03: Identity delegation and revocation](passes/03-identity-delegation-revocation.md), source-traced at pinned AGT SHA; tests not executed. Existing artifact independently read on this run.
 - [04: Audit integrity and session receipts](passes/04-audit-integrity-receipts.md), source-traced at pinned AGT SHA; tests not executed. Verified committed artifact at 1112411928962c9b6ff28d2d49429c85dfa71776.
+- [05: Scoped stop gate and termination-result semantics](passes/05-runtime-containment-kill-switch.md), source-traced at pinned AGT SHA; tests not executed. Verified committed report at 598115837078d59e513427514439ae10f14e9d89.
 
 ## Non-negotiable
 Do not recommend Temporal or another workflow engine. Avoid parallel authoritative stores and extractors. AGT middleware does not by itself create OS-enforced privilege separation. The two-gate workflow and separate verifier authority are already decided; the *enforceable implementation* remains unproven.
