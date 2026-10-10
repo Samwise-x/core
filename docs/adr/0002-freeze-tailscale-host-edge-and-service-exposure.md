@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0003
 ---
 
 # Freeze Tailscale host edge and Samwise service exposure contract
