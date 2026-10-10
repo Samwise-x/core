@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by ADR-0003
 ---
 
 # Freeze canonical Tailscale ingress and service port contract
