@@ -18,3 +18,19 @@ Tests NOT EXECUTED.
 
 ## Next
 Pass 03: signed identity, delegation narrowing and revocation at the dispatch boundary.
+
+## Exact execution contract
+1. `AgentControl.evaluate_intervention_point` in `_orchestration.py:163-189` creates `InterventionPointRequest(point,snapshot,mode)` and forwards it to the runtime client. Invalid request mode or snapshot conversion returns DENY with `host_error:context_invalid`.
+2. `AgentControl.run_tool` forms `tool_call:{name,args}` plus optional host-provided `id`; when a SnapshotSource exists, it reserves a tool-call counter before the first await, releasing it on pre-check failure. It invokes `execute(effective_args)` only after successful pre enforcement. Post evaluation uses the effective args and the returned tool value.
+3. `AgentControl.enforce` in `_orchestration.py:374-418` permits ALLOW and TRANSFORM in ENFORCE mode; DENY without approval blocks. EVALUATE_ONLY performs no enforcement and must never authorize production effects.
+4. The host must route every tool call through the guarded registry. Post-tool denial suppresses a result but cannot undo an effect. Policy mediation errors and downstream callable exceptions are distinct.
+
+## Minimal SAMWISE test-first handoff
+Implement at the existing Hooks/AgentSH dispatcher, not a new proxy or policy server:
+- RED: DENY or policy-evaluation failure yields zero executions; ALLOW executes once; TRANSFORM changes only validated effective args before execution; post denial never claims rollback.
+- RED: no alternate registry route exposes an unguarded callable; EVALUATE_ONLY cannot dispatch an effect.
+- RED: absent optional tool-call ID remains absent in the ACS snapshot; blank ID is rejected. AGT `test_orchestration.py:107-155` covers these cases.
+- GREEN: adapt existing dispatcher and host snapshot; no new authoritative storage.
+- REFACTOR: preserve the above vectors and remove duplicate middleware.
+
+All verification here is source inspection only. No SAMWISE tests were executed.
