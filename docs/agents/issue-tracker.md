@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
+Issues and specs for this repo live as GitHub issues. Use an authenticated GitHub connector when available; otherwise use the authenticated `gh` CLI. The commands below are CLI equivalents, not a requirement to install `gh` in every execution environment.
 
 ## Conventions
 

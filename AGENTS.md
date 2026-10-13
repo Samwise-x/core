@@ -10,4 +10,4 @@ Five default roles: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-
 
 ### Domain docs
 
-Single-context. Read `CONTEXT.md`, then `GLOSSARY.md`, then `docs/adr/`. See `docs/agents/domain.md`.
+Single-context. Read `CONTEXT.md` and the applicable accepted ADR in `docs/adr/`. See `docs/agents/domain.md`.

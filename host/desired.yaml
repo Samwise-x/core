@@ -1,0 +1,44 @@
+schema_version: 1
+contract: ADR-0001
+status: frozen
+network_contract: ADR-0003
+network_state: 'D:\Samwise\host\network.yaml'
+
+host:
+  platform: windows
+  substrate_root: 'D:\Samwise\host'
+  linux_storage_root: 'D:\WSL'
+
+wsl:
+  version: 2
+  distro:
+    name: samwise-ubuntu
+    source: Ubuntu-24.04
+    storage: 'D:\WSL\samwise-ubuntu'
+  resources:
+    memory: 8GB
+    processors: 4
+    swap: 4GB
+    swap_file: 'D:\WSL\wsl-swap.vhdx'
+  linux_workspace_root: /srv/samwise
+  core_repo: /srv/samwise/core
+
+artifacts:
+  observations: 'D:\Samwise\host\observations'
+  raw_observability: 'D:\Samwise\host\raw-observability.jsonl'
+  checkpoint: 'D:\Samwise\host\checkpoint.json'
+  measurements: 'D:\Samwise\host\measurements.jsonl'
+
+semantics:
+  observations_are_authoritative_truth: false
+  checkpoint_is_persistent_continuity: false
+  measurements_are_optimization_objective: false
+  authoritative_persistent_state: YantrikDB
+  event_stream_owner: OmniRoute
+  deterministic_workflow_owner: n8n
+  optimization_objective: 'Gradient = Compounding'
+
+measurement_policy:
+  establish_clean_baseline_first: true
+  derive_thresholds_from_baseline: true
+  speculative_thresholds: false

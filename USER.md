@@ -119,11 +119,10 @@ Removal from `USER.md` does not rewrite governed historical evidence.
 
 ## References
 
-- **Terminology:** Read `CONTEXT.md` when a canonical domain term is unclear.
-- **Identity:** Read `IDENTITY.md` when reasoning about what Samwise is, what remains invariant, or where autonomy ends.
-- **Procedure:** Read `AGENTS.md` when determining permissions, approvals, escalation, or execution behavior.
-- **Architecture:** Read `SYSTEM.md` when reasoning about governance, continuity, evidence, ownership, or the Gradient.
-- **Environment:** Read `TOOLS.md` only when execution depends on current tools or infrastructure.
+- **Terminology, identity, and invariants:** Read `CONTEXT.md` for the canonical domain and authority boundaries.
+- **Procedure:** Read `AGENTS.md`, then the relevant `docs/agents/` workflow when determining permissions, approvals, and execution behavior.
+- **Architecture:** Read the applicable accepted `docs/adr/` decision alongside `CONTEXT.md`.
+- **Environment:** Observe the current target machine and compare it with the canonical `host/desired.yaml` and `host/network.yaml` contracts before execution.
 
 ---
 
