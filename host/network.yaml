@@ -1,0 +1,53 @@
+schema_version: 2
+contract: ADR-0003
+status: frozen
+
+ownership:
+  mesh: Tailscale
+  node_owner: wsl2
+  wsl_tailnet_node: true
+  windows_tailnet_node: false
+  container_tailnet_nodes: false
+
+node:
+  canonical_hostname: gtx1660
+  use_magicdns_in_service_config: true
+  hardcode_100x_addresses: false
+  ingress_default: tailnet-only
+  funnel_default: disabled
+  subnet_router: false
+  exit_node: false
+
+exposure_policy:
+  backend_bind: 127.0.0.1
+  docker_publish_host: 127.0.0.1
+  tailnet_serve_owner: wsl2
+  preserve_native_ports: true
+  path_multiplexing: false
+  public_internet_baseline: false
+  activate_only_with_live_backend: true
+  verify_tailnet_policy_before_activation: true
+  wildcard_grants_allowed: false
+
+# Port reservations, not claims that these services exist.
+services:
+  openclaw_gateway: {port: 18789, protocol: http-websocket, when: deployed}
+  openclaw_bridge: {port: 18790, protocol: http-websocket, when: feature-required}
+  omniroute: {port: 20128, protocol: http, when: deployed}
+  omniconductor: {port: 7910, protocol: http-sse, when: remote-peer-required}
+  faro: {port: 7920, protocol: http, when: deployed}
+  yantrikdb_wire: {port: 7437, protocol: tcp, when: authorized-remote-client-required}
+  yantrikdb_http: {port: 7438, protocol: http, when: authorized-remote-client-required}
+  yantrikdb_cluster: {port: 7440, protocol: tcp, when: cluster-deployed}
+  yantrikdb_mcp: {port: 8420, protocol: http-sse, when: network-mcp-explicitly-deployed}
+  n8n_local: {port: 5678, protocol: http, when: local-deployment}
+  tandem_browser: {port: null, when: requirement-proven}
+  midscene: {port: null, when: requirement-proven}
+
+serve:
+  desired_active_mappings_now: []
+  owner: wsl2
+
+funnel:
+  desired_active_mappings: []
+  allowed_by_baseline: false
